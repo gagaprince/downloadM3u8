@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node ./src/index"
+    "dev": "ts-node ./src/index",
+    "test": "ts-node ./index"
   },
   "repository": {
     "type": "git",

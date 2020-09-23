@@ -7,8 +7,7 @@ const ffmpeg = require('fluent-ffmpeg');
 async function main() {
     const start = Date.now();
     await downloadM3u8FileToMp4(
-        'https://vs02.520call.me/files/mp4/d/dJFos.m3u8?t=1600544654',
-        'SVDVD-756 加入春藥的外賣強姦 裝作回收餐具闖入家中＆失禁昏迷瘋狂強姦！[有碼高清中文字幕]'
+        'http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8', 'cctv'
     );
     const end = Date.now();
     console.log(Math.floor((end - start) / 100 / 60) / 10);
