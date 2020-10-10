@@ -21,4 +21,19 @@ import { DownloadMoreThread } from "./src/download/DownloadMoreThread";
 // console.log(tmpBuf);
 // console.log(tmpBuf.length);
 
-new DownloadMoreThread('', 4, tmpFile);
+// new DownloadMoreThread('', 4, tmpFile);
+
+const test = async () => {
+    console.log('test');
+    const ret = await new Promise((res) => {
+        setTimeout(() => {
+            res('hhh');
+        }, 1000);
+    }).then((res) => {
+        console.log(res);
+        return 'www';
+    });
+    console.log(ret);
+}
+
+test();
