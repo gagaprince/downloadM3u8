@@ -1,1 +1,34 @@
-console.log('111');
+var LZUTF8 = require('lzutf8');
+const string =
+    'eyJpZCI6MTQyMjA5OCwidGl0bGUiOiLprLzor63ogIUg56ys5LiA5a2j5Zyo57q/6KeC55yLIOOAkOiDoeWTpeebtOaSreOAkSBHaG9zdCBXaGlzcGVyZXIgU2Vhc29uIDHNOOWPiOWQjTog54G15oSf5bqUICjGYei+kSnOKpyo57ea6KeA55yLIiwiZGVzY3JpcHRpb27/AJ//AJ//AJ//AJ/4AJ90YWtlZG93biI6MMoNX2luZm8iOiIiLCLECnMiOiJbe1wiaWRc6gFyXOYBc1wiOlz0ANZcIixcIm9yaWdpbmFsX8or+ADOxTB5ZWFyXCI6MjAwNSxcInN1bW1hcnnFN+aVmeWgguS4re+8jMRhr7nmlrDkurrigJTigJRNZWxpbmRh77yI6Km55aau5byXwrfmtJvoipnCt+S8keS8iueJuSBKZW5uaWZlciBMb3ZlIEhld2l0dCDppbDvvInlkoxKaW3vvIjlpKfljavCt+W6t+aLieW+tyBEYXZpZCBDb25yYWTHLublAbbkuL7ooYzlqZrnpLzjgILnqoHnhLbvvIzmnInkuIDkuKrosIHpg73nnIvkuI3liOQAr+WQkecArOWvu+axguW4ruWKqeOAguWOn+adpccc5LuO5bCP5bCx6LGh5aW556WW5q+N5LiA5qC377yM5YW3xmLnp43lkozprLzprYLmsp/pgJrnmoTnpZ7np5jog73lipvvvIzGPOWRiuivieWluei/meS6m8Yz5LmL5omA5Lul5LiN6IKv56a75byA5AC/mK/lm6DkuLrku5bku6zlkozmtLvnnYDnmoTkurrkuYvpl7Tov5jmnInmnKrlrozmiJDFG4vkAJy5tuaKisc5j6vlgZrigJzlnJ/lnLDlub3ngbXigJ3kAO7FYOgBCucA0I7vAMrov5nnp43nibnmrorpANDmALLluLjluLjmnInHM52l5om+5aW55AFPv5nmAIjov5vooeQCLOS6m+i2heiHqueEtsRXsIPmn6XjgILkAcXlAIjmraTvvIznAI7nu4/luLjpga3mAbHku6znmoTpnZ7orq7lkozotKjnlpHkAoS9huW9k8Rzj5HnjrDoh6rlt7HkuI3ku4XkAKzlAdfmrbvogIXELbmf5ZCM5qC35a+55QI4luYBTOe7meS6iOaPtOaJi+aX5AI75AHun6XpgZPGUeQB0Im55byC5Yqf6IO95LiN5piv6LSf5ouF6IDkAankAgaslOi0ouWvjOKApuKApuUDSHNjb3LkA283LjYwNDM05AOsb3RhbFwiOjY2MzfED+cD6VzkA/fKD+UD+OUDcMVHYWthc8UO9QRWxSN0YWfGI+aBkOaAluagh+etviAvIOaDiuaCmiAv5ASR5byCxAmUteinhuWJp8QMnIvov4fkAN7MFb6OygmbvSAvIOkEV8VrZGlyZWN0b3LGcOe6pue/sMK35qC86Zu3xSF3cml0Zdofc3RhxR1udWxsLFwicHViZGF0ZcYv5ARyLTA5LTIzKMZ+KVwifV3kBb51b25hb+gFEOQFBccSa2XmBJlpakRvRzRBa1ZGOMVmcmF3X2pzb+QBWlwie1xcXCJkY8QGOiA1NSwgxRBkxhAyMjfGEWnHETExNjU0xhNjyBTEBuasp+YBHMQNxiBob3THVTA3NjLGFHDINDDGEHTPEGxhbmfKVTxmb250IHN0eWxlPSdjb2xvcjojRkQyNTI1Jz41LjHkuIc8L8QjPsp1bGlua8ZB5QFDx2XkBdnJVukBsuesrDHkBgbJPXRvcGnnAQnnAJBjaGFyZ8c8yBNvbnR45wDaxAbsAV3JSmlzU2hvd8YldHJ1ZcYWc291cmPHTuoAn2FkZFRpbesAoTIwMTctMDItMTFUMTY6MDY6MDDLWm1nUGF0aMouLy9zdGF0aWMuaWZ1bi50di91cGxvYWQvdmlkZW8vxEwwMjExMTYwNcQCNzE2NzJzLmdpZstTc0luZGV4xlNmYWxz5wCvcGluZ0ZlbsYYOOkA/21tZW50c8YWM+cCH+YC+GXnAc3qANxpc1NlcmlhbNFc5AHpdWHoAVvEBuiLseivresBymFzdE5h7AEY5YWo6ZuGyiJwb3N08AE65AMjMS0wMVQwMDrFA8ovcmVnaW9u6ACMxAbmArXKIuQDfnJp7AKC/AerLPEHh8pKdG9kYXlOdW3GSjTnAzJhbHRlckdvbPEBJ2F0eXBl7gDt6QR2ylXkA+F0YXhp5wF85wGRc2hhcmVDb3Vu5wKUMTXnA2x1cOQEPPwCWzPuASHmAjllZGJ58ACgdmlwcmX2Ar5pbWdwYXRoX2xpc+cAgcoc5gCCd2Vla2zTU2Rlb0NsYXNzSUTqAKAwLDEsNCwxNuoAlegCcHRhdHXuAPlmYXZv5AVO6wD8MzA47AOAVO0BhusCfnZpc2lhYmxlU9JW5wMNSW7EJGLoBDgwfecFbHBhbmd6aekFbMQTbWFodWHNEnp1aWt1Yc4mZHVib2t1zRPLTF9iYWNrdXDIGmNqZ8sqfQ==';
+
+const s = LZUTF8.decodeBase64(string);
+
+var decompressor = new LZUTF8.Decompressor();
+const ss = decompressor.decompressBlock(s);
+
+const ret = LZUTF8.CompressionCommon.encodeDecompressedBytes(ss, 'String');
+
+console.log(ret);
+
+const versions = [
+    'version001',
+    'vers1on001',
+    'vers1on00i',
+    'bersion001',
+    'vcrsion001',
+    'versi0n001',
+    'versio_001',
+    'version0o1',
+];
+const now = Date.now();
+const version = versions[now % versions.length];
+
+const key = `${now}&id=ijDoG4AkVF8&${version}`;
+
+var md5 = require('md5');
+const a1 = md5(key.toLowerCase());
+const result = `vv=${a1}&pub=${now}`;
+console.log(key);
+console.log(a1);
+console.log(result);
